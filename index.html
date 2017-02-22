@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>vue-timeline</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<style>
+    .box {
+        width: 50px;
+        height: 60px;
+        background-color: #0086b3;
+        border: 0px;
+        font-size: 30px;
+        color: #fff;
+    }
+
+</style>
+<body>
+
+<vue-timeline :frame-time="0.05" :playing.sync="playing" :current-time.sync="currentTime" :total-time.sync="totalTime"
+              :loop.sync="loop">
+
+</vue-timeline>
+<vue-keyframe-animation time="0.05s"
+                        :keyframes="[{value:0,css:{x:0,rotate:0,opacity:1}},{value:'2',css:{x:0,rotate:-50,opacity:1}},{value:4,css:{x:100,rotate:100,opacity:1}},{value:6,css:{opacity:0,x:100,rotate:100}}]"
+                        :current.sync="currentTime" style="background-color:#000000;width: 100px;height: 100px">
+</vue-keyframe-animation>
+
+<box @click="playing=!playing">click</box>
+<!--{{currentTime}}/{{totalTime}}-->
+<script src="dist/vue.min.js"></script>
+<script src="dist/smart.min.js"></script>
+<script src="dist/vue-keyframe-animation.js"></script>
+<script src="dist/vue-timeline.js"></script>
+
+<script>
+
+    Smart.Css.smartCss(document.querySelector('body'), {scale: '0.5'});
+    // Smart.Css.smartCss(document.querySelector('.blur'),{filter:'blur(10px);',width:'100%'});
+    new Vue({
+        el: 'body',
+        components: {
+            VueTimeline: VueTimeline, VueKeyframeAnimation: VueKeyframeAnimation
+        },
+        data: {
+            playing: true, currentTime: 0, totalTime: 10, loop: false
+        },
+        methods: {}
+    })
+
+
+</script>
+</body>
+</html>
