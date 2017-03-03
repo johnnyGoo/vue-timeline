@@ -45,7 +45,7 @@
             },
             frameTime: {
                 type: Number,
-                default: 0.05
+                default: 50
             }
         },
         data: function () {
@@ -71,7 +71,6 @@
                 } else {
                     this.currentTime += this.frameTime;
                 }
-
                 if (this.currentTime >= this.totalTime) {
                     this.currentTime = this.totalTime;
                     if (!this.loop) {
@@ -82,15 +81,10 @@
                 } else {
                     this.autoNext()
                 }
-                //  this.currentTime=(this.currentTime).toFixed(3);
-
-                //   console.log(this.currentTime)
-
-
             },
             autoNext: function () {
                 clearTimeout(this.iv);
-                this.iv = setTimeout(this.nextFrame, this.frameTime * 1000);
+                this.iv = setTimeout(this.nextFrame, this.frameTime);
             },
             play: function () {
                 this.playing = true;
